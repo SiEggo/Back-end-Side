@@ -1,6 +1,6 @@
 # Donate.com Back-End With Express.js
 
-Ini adalah proyek backend menggunakan Express.js untuk mengelola aplikasi [Nama Aplikasi Anda]. Proyek ini menyediakan server dan API untuk [deskripsi singkat tentang fungsionalitas aplikasi atau layanan yang disediakan].
+Ini adalah proyek backend menggunakan Express.js untuk mengelola aplikasi donate.com. Proyek ini menyediakan server dan API untuk menampilkan data donasi yang sudah tersimpan di dalam database, menambahkan data donasi baru, dan menampilkan data detail events berdasarkan id data.
 
 ## Instalasi
 
