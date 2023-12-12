@@ -38,7 +38,6 @@ Ini adalah proyek backend menggunakan Express.js untuk mengelola aplikasi donate
 
 1. Mendapatkan Semua Data Donasi
    GET /
-   Mengembalikan semua data donasi yang tersedia dari tabel 'donasi' dalam database.
 
 2. Menambahkan Data Donasi Baru
    POST /donates
