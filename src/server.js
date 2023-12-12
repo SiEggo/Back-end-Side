@@ -84,8 +84,6 @@ app.get('/events/:id', (req, res) => {
   });
 });
 
-// Endpoint untuk mengambil foto berdasarkan ID donasi
-
 app.listen(port, () => {
   console.log(`Server sudah menyala pada port ${port}`);
 });
