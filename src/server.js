@@ -28,17 +28,23 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static('./src'));
 
+const hostname = "7sp.h.filess.io";
+const database = "donate_maprayspie";
 const port = 3307;
+const username = "donate_maprayspie";
+const password = "9b0a707fac7090c3a636c6292b1f1ca3677b65c1";
+
 
 const upload = multure({
   storage: storage,
 });
 
 const db = mysql.createConnection({
-  host: '7sp.h.filess.io',
-  user: 'donate_maprayspie',
-  password: '9b0a707fac7090c3a636c6292b1f1ca3677b65c1',
-  database: 'donate_maprayspie',
+  host: hostname,
+  user: username,
+  password,
+  database,
+  port,
 });
 
 app.get('/', (req, res) => {
