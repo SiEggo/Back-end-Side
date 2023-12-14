@@ -75,6 +75,9 @@ app.post('/donates', upload.single('gambar'), uploadWithCloudinary, (req, res) =
     req.body.alamat,
     req.body.gambar,
   ];
+
+  console.log(req.body.gambar);
+
   db.query(sql, values, (err, result) => {
     if (err) {
       console.error('Error saat menyimpan data ke database:', err);
