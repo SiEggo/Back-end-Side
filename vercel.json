@@ -12,6 +12,9 @@
         }
     ],
     "rewrites": [
-        { "source": "/old-blog/:slug", "destination": "/blog/:slug" }
+        { 
+            "src": "/(.*)", 
+            "dst": "/" 
+    }
       ]
 }
