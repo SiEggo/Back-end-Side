@@ -27,7 +27,7 @@ const storage = multure.diskStorage({
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(express.static('./src'));
+// app.use(express.static('./src'));
 
 const hostname = '7sp.h.filess.io';
 const database = 'donate_maprayspie';
