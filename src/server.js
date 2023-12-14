@@ -25,6 +25,7 @@ const storage = multure.diskStorage({
   },
   filename: (req, file, cb) => {
     const fileType = file.mimetype.split('/')[1];
+    // eslint-disable-next-line prefer-template
     cb(null, file.fieldname + '-' + Date.now() + `.${fileType}`);
   },
 });
