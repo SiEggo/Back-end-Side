@@ -9,6 +9,7 @@
 /* eslint-disable object-curly-spacing */
 /* eslint-disable linebreak-style */
 /* eslint-disable import/no-extraneous-dependencies */
+const {uploadWithCloudinary} = require('./cloudinary') ;
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
@@ -55,7 +56,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.post('/donates', upload.single('gambar'), (req, res) => {
+app.post('/donates', upload.single('gambar'),uploadWithCloudinary, (req, res) => {
   const sql = 'INSERT INTO donasi (`id_donasi`, `nama_donatur`, `email`, `judul_donasi`, `batas_donasi`, `kategori_donasi`, `deskripsi_donasi`, `no_telepon`, `alamat`, `poster`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
   const values = [
     req.body.id,
@@ -67,7 +68,7 @@ app.post('/donates', upload.single('gambar'), (req, res) => {
     req.body.deskripsi,
     req.body.number,
     req.body.alamat,
-    req.file.filename,
+    req.body.gambar,
   ];
   db.query(sql, values, (err, result) => {
     if (err) {
