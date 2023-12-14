@@ -78,7 +78,7 @@ app.post('/donates', upload.single('gambar'), uploadWithCloudinary, (req, res) =
   db.query(sql, values, (err, result) => {
     if (err) {
       console.error('Error saat menyimpan data ke database:', err);
-      return res.status(500).json({ error: 'Terjadi kesalahan saat menyimpan data.' });
+      return res.status(500).json({ error: `Terjadi kesalahan saat menyimpan data. ${err}`});
     }
     console.log('Data berhasil disimpan:', result);
     return res.status(200).json({ message: 'Data berhasil disimpan.' });
