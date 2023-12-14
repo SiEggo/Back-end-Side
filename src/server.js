@@ -9,12 +9,12 @@
 /* eslint-disable object-curly-spacing */
 /* eslint-disable linebreak-style */
 /* eslint-disable import/no-extraneous-dependencies */
-const {uploadWithCloudinary} = require('./cloudinary') ;
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const multure = require('multer');
 const path = require('path');
+const {uploadWithCloudinary} = require('./cloudinary');
 
 const storage = multure.diskStorage({
   destination: './src/image',
@@ -29,12 +29,11 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static('./src'));
 
-const hostname = "7sp.h.filess.io";
-const database = "donate_maprayspie";
+const hostname = '7sp.h.filess.io';
+const database = 'donate_maprayspie';
 const port = 3307;
-const username = "donate_maprayspie";
-const password = "9b0a707fac7090c3a636c6292b1f1ca3677b65c1";
-
+const username = 'donate_maprayspie';
+const password = '9b0a707fac7090c3a636c6292b1f1ca3677b65c1';
 
 const upload = multure({
   storage: storage,
@@ -56,7 +55,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.post('/donates', upload.single('gambar'),uploadWithCloudinary, (req, res) => {
+app.post('/donates', upload.single('gambar'), uploadWithCloudinary, (req, res) => {
   const sql = 'INSERT INTO donasi (`id_donasi`, `nama_donatur`, `email`, `judul_donasi`, `batas_donasi`, `kategori_donasi`, `deskripsi_donasi`, `no_telepon`, `alamat`, `poster`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
   const values = [
     req.body.id,
