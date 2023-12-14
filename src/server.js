@@ -64,7 +64,7 @@ const pool = mysql.createPool({
 
 app.get('/', (req, res) => {
   const sql = 'SELECT * FROM donasi';
-  pool;.query(sql, (err, data) => {
+  pool.query(sql, (err, data) => {
     if (err) return res.json(err);
     return res.json(data);
   });
