@@ -14,13 +14,18 @@ const mysql = require('mysql');
 const cors = require('cors');
 const multure = require('multer');
 const path = require('path');
+const fs = require('fs');
 const {uploadWithCloudinary} = require('./cloudinary');
 
 const storage = multure.diskStorage({
-  destination: './src/image',
-  // eslint-disable-next-line arrow-body-style
+  destination: (req, file, cb) => {
+    const fileLocation = './public/static/images';
+    if (!fs.existsSync(fileLocation)) fs.mkdirSync(fileLocation, { recursive: true });
+    cb(null, fileLocation);
+  },
   filename: (req, file, cb) => {
-    return cb(null, `${file.filename}_${Date.now()}${path.extname(file.originalname)}`);
+    const fileType = file.mimetype.split('/')[1];
+    cb(null, file.fieldname + '-' + Date.now() + `.${fileType}`);
   },
 });
 
