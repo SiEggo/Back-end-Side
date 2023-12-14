@@ -45,7 +45,16 @@ const upload = multure({
   storage: storage,
 });
 
-const db = mysql.createConnection({
+// const db = mysql.createConnection({
+//   host: hostname,
+//   user: username,
+//   password,
+//   database,
+//   port,
+// });
+
+const pool = mysql.createPool({
+  connectionLimit: 20,
   host: hostname,
   user: username,
   password,
@@ -55,7 +64,7 @@ const db = mysql.createConnection({
 
 app.get('/', (req, res) => {
   const sql = 'SELECT * FROM donasi';
-  db.query(sql, (err, data) => {
+  pool;.query(sql, (err, data) => {
     if (err) return res.json(err);
     return res.json(data);
   });
@@ -78,7 +87,7 @@ app.post('/donates', upload.single('gambar'), uploadWithCloudinary, (req, res) =
 
   console.log(req.body.gambar);
 
-  db.query(sql, values, (err, result) => {
+  pool.query(sql, values, (err, result) => {
     if (err) {
       console.error('Error saat menyimpan data ke database:', err);
       return res.status(500).json({ error: `Terjadi kesalahan saat menyimpan data. ${err}`});
@@ -91,7 +100,7 @@ app.post('/donates', upload.single('gambar'), uploadWithCloudinary, (req, res) =
 app.get('/events/:id', (req, res) => {
   const eventId = req.params.id;
   const sql = 'SELECT * FROM donasi WHERE id_donasi = ?';
-  db.query(sql, eventId, (err, data) => {
+  pool.query(sql, eventId, (err, data) => {
     if (err) return res.status(500).json({ error: 'Terjadi kesalahan saat mengambil data.' });
     if (data.length === 0) return res.status(404).json({ message: 'Event tidak ditemukan.' });
 
