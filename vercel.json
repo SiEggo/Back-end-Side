@@ -6,11 +6,6 @@
             "use": "@vercel/node"
         }
     ],
-    "env": [
-        {
-            "DB_URL": "mysql://donate_maprayspie:9b0a707fac7090c3a636c6292b1f1ca3677b65c1@7sp.h.filess.io:3307/donate_maprayspie"
-        }
-    ],
     "rewrites": [
         { 
             "src": "/(.*)", 
