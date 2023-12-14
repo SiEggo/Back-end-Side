@@ -18,11 +18,11 @@ const fs = require('fs');
 const {uploadWithCloudinary} = require('./cloudinary');
 
 const storage = multure.diskStorage({
-  destination: (req, file, cb) => {
-    const fileLocation = './public/static/images';
-    if (!fs.existsSync(fileLocation)) fs.mkdirSync(fileLocation, { recursive: true });
-    cb(null, fileLocation);
-  },
+  // destination: (req, file, cb) => {
+  //   const fileLocation = './public/static/images';
+  //   if (!fs.existsSync(fileLocation)) fs.mkdirSync(fileLocation, { recursive: true });
+  //   cb(null, fileLocation);
+  // },
   filename: (req, file, cb) => {
     const fileType = file.mimetype.split('/')[1];
     // eslint-disable-next-line prefer-template
