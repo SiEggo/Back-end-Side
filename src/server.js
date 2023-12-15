@@ -18,11 +18,6 @@ const fs = require('fs');
 const {uploadWithCloudinary} = require('./cloudinary');
 
 const storage = multure.diskStorage({
-  // destination: (req, file, cb) => {
-  //   const fileLocation = './public/static/images';
-  //   if (!fs.existsSync(fileLocation)) fs.mkdirSync(fileLocation, { recursive: true });
-  //   cb(null, fileLocation);
-  // },
   filename: (req, file, cb) => {
     const fileType = file.mimetype.split('/')[1];
     // eslint-disable-next-line prefer-template
@@ -33,7 +28,6 @@ const storage = multure.diskStorage({
 const app = express();
 app.use(express.json());
 app.use(cors());
-// app.use(express.static('./src'));
 
 const hostname = '7sp.h.filess.io';
 const database = 'donate_maprayspie';
@@ -44,14 +38,6 @@ const password = '9b0a707fac7090c3a636c6292b1f1ca3677b65c1';
 const upload = multure({
   storage: storage,
 });
-
-// const db = mysql.createConnection({
-//   host: hostname,
-//   user: username,
-//   password,
-//   database,
-//   port,
-// });
 
 const pool = mysql.createPool({
   connectionLimit: 20,
@@ -84,8 +70,6 @@ app.post('/donates', upload.single('gambar'), uploadWithCloudinary, (req, res) =
     req.body.alamat,
     req.body.gambar,
   ];
-
-  console.log(req.body.gambar);
 
   pool.query(sql, values, (err, result) => {
     if (err) {
